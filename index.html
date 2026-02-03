@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jour 1 - Neon Grid</title>
+    <style>
+        /* --- LE STYLE (CSS) --- */
+        body {
+            background-color: #050505; /* Fond presque noir */
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+            font-family: sans-serif;
+        }
+
+        #container {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 400px; /* Taille globale de la grille */
+        }
+
+        .square {
+            height: 20px;
+            width: 20px;
+            background-color: #1d1d1d; /* Couleur "éteinte" */
+            margin: 2px; /* Espacement entre les carrés */
+            box-shadow: 0 0 2px #000;
+            
+            /* C'est ICI que la magie opère :
+               Quand on quitte le carré, la couleur met 2 secondes à disparaître (Fade out) */
+            transition: 2s ease; 
+        }
+
+        .square:hover {
+            background-color: #00fffc; /* Couleur "allumée" (Cyan Néon) */
+            box-shadow: 0 0 10px #00fffc, 0 0 30px #00fffc; /* Effet de Halo */
+            
+            /* Quand la souris entre, l'allumage est INSTANTANÉ (0s) */
+            transition: 0s; 
+        }
+    </style>
+</head>
+<body>
+
+    <div id="container"></div>
+
+    <script>
+        /* --- LA LOGIQUE (JS) --- */
+        const container = document.getElementById('container');
+        
+        // On calcule combien de carrés on veut (ici 400 pour une grille 20x20)
+        const SQUARES = 400;
+
+        for(let i = 0; i < SQUARES; i++) {
+            const square = document.createElement('div');
+            square.classList.add('square');
+            
+            // On ajoute le carré au container
+            container.appendChild(square);
+        }
+    </script>
+</body>
+</html>
